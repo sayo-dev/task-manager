@@ -6,6 +6,8 @@ import task.service.TaskServiceImpl;
 
 void main() {
 
+    final String INVALID_OPTION = "INVALID OPTION";
+
     final TaskRepository taskRepository = new TaskRepository();
 
     final TaskService taskService = new TaskServiceImpl(taskRepository);
@@ -14,15 +16,8 @@ void main() {
 
     Task[] allTasks = {
             new Task(null, "Go to school", "Going to school"),
-            new Task(null, "Go to church", "Going to school"),
-            new Task(null, "Go to market", "Going to school"),
-            new Task(null, "Sleep", "Going to school"),
-            new Task(null, "fight", "Going to school"),
-            new Task(null, "work", "Going to school"),
-            new Task(null, "read", "Going to school"),
-            new Task(null, "eat", "Going to school"),
-            new Task(null, "bounce", "Going to school"),
-            new Task(null, "play", "Going to school")
+            new Task(null, "Go to church", "Going to church"),
+            new Task(null, "Go to market", "Going to market"),
     };
 
     for (Task tsk : allTasks) {
@@ -47,8 +42,8 @@ void main() {
                     System.out.println("Enter description: ");
                     String description = scanner.nextLine();
 
-                    taskService.createTask(new Task(null, title, description));
-                    System.out.println("Task saved successfully");
+                    String message = taskService.createTask(new Task(null, title, description));
+                    System.out.println(message);
                 }
 
                 case 2 -> {
@@ -66,22 +61,43 @@ void main() {
                 case 4 -> {
                     Long id = getTaskId(scanner);
 
-                    System.out.println("Status (IN_PROGRESS, DONE): ");
-                    TaskStatus status = TaskStatus.valueOf(scanner.next());
+                    if (taskService.getTask(id) == null) {
+                        return;
+                    }
 
-                    taskService.updateStatus(id, status);
+                    TaskStatus status = null;
+
+                    System.out.println("Select Status (I. IN_PROGRESS  D. DONE): ");
+                    switch (scanner.next()) {
+                        case "I" -> {
+                            status = TaskStatus.IN_PROGRESS;
+                        }
+                        case "D" -> {
+                            status = TaskStatus.DONE;
+                        }
+                        default -> {
+                            System.out.println(INVALID_OPTION);
+                        }
+                    }
+
+                    if (status != null) {
+                        String message = taskService.updateStatus(id, status);
+                        System.out.println(message);
+                    }
+
                 }
 
                 case 5 -> {
                     Long id = getTaskId(scanner);
 
-                    taskService.deleteTask(id);
+                    String message = taskService.deleteTask(id);
+                    System.out.println(message);
                 }
                 case 6 -> {
                     System.out.println("GOODBYE!");
                     return;
                 }
-                default -> System.out.println("INVALID OPTION");
+                default -> System.out.println(INVALID_OPTION);
             }
         } catch (Exception ex) {
             System.out.println("ERROR: " + ex.getMessage());
