@@ -1,6 +1,7 @@
 # Task Manager
 
-A simple console-based Java application for managing your daily tasks. This application demonstrates basic CRUD (Create, Read, Update, Delete) operations in a simple command-line interface.
+A simple console-based Java application for managing your daily tasks. This application demonstrates basic CRUD (Create,
+Read, Update, Delete) operations in a simple command-line interface.
 
 ## Features
 
@@ -13,7 +14,8 @@ A simple console-based Java application for managing your daily tasks. This appl
 
 ## Requirements
 
-- **Java 21 or higher**: This project utilizes modern Java features such as unnamed classes and instance main methods (`void main()`), as well as enhanced `switch` expressions.
+- **Java 21 or higher**: This project utilizes modern Java features such as unnamed classes and instance main methods (
+  `void main()`), as well as enhanced `switch` expressions.
 
 ## Getting Started
 
@@ -30,7 +32,8 @@ A simple console-based Java application for managing your daily tasks. This appl
 
 ## Usage
 
-When you run the application, you will be presented with a menu. Enter the number corresponding to the action you want to perform and follow the prompts.
+When you run the application, you will be presented with a menu. Enter the number corresponding to the action you want
+to perform and follow the prompts.
 
 ```text
 ===WELCOME TO TASK MANAGER===
@@ -52,4 +55,6 @@ Choose option:
 
 ## Architecture
 
-The application is structured simply with domain objects (`Task`, `TaskStatus`), a repository implementation for storing tasks in memory (`TaskRepository`), and a service layer (`TaskService`, `TaskServiceImpl`) encapsulating the business logic.
+The application is structured simply with domain objects (`Task`, `TaskStatus`), a repository implementation for storing
+tasks in memory (`TaskRepository`), and a service layer (`TaskService`, `TaskServiceImpl`) encapsulating the business
+logic.
