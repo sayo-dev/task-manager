@@ -10,6 +10,8 @@ Read, Update, Delete) operations in a simple command-line interface.
 - **Get Task**: View details of a specific task using its ID.
 - **Update Task Status**: Modify the status of a task to either `IN_PROGRESS` or `DONE`.
 - **Delete Task**: Remove a task by its ID.
+- **Colorful Console UI**: Uses a custom zero-dependency ANSI logger for visually organized output, warnings, and errors.
+- **Robust Input Handling**: Safeguards against unhandled scanner inputs (e.g. typing words instead of numbers) to prevent application crashes.
 - **Pre-populated Data**: Starts with a few default tasks for testing purposes.
 
 ## Requirements
@@ -55,6 +57,8 @@ Choose option:
 
 ## Architecture
 
-The application is structured simply with domain objects (`Task`, `TaskStatus`), a repository implementation for storing
-tasks in memory (`TaskRepository`), and a service layer (`TaskService`, `TaskServiceImpl`) encapsulating the business
-logic.
+The application is designed specifically with clean code principles (MVC pattern) to separate concerns across different layers:
+- **Domain Layer (`Task`, `TaskStatus`)**: The core models mapping the business entities.
+- **Controller Layer (`TaskCLI`)**: Handles user interactions, routes commands, and bridges standard I/O to the service layer.
+- **Service Layer (`TaskService`, `TaskServiceImpl`)**: Encapsulates the central business logic.
+- **Repository Layer (`TaskRepository`)**: An in-memory store making it straightforward to swap with a proper database like PostgreSQL later without modifying business logic.
